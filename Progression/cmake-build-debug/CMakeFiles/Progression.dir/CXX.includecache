@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/rodrigo.cespedes/Progression/Progression.cpp
+Progression.h
+C:/Users/rodrigo.cespedes/Progression/Progression.h
+
+C:/Users/rodrigo.cespedes/Progression/Progression.h
+
