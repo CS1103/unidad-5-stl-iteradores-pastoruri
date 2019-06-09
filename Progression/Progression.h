@@ -7,9 +7,11 @@
 //ITERADORES
 class ArithProgIterator{
     long cur_data;
-    long inc_data;
+    long step;
     friend class ArithProgression;
-    ArithProgIterator(long cur_datam,long inc_datam): cur_data{cur_datam},inc_data{inc_datam}{}
+    ArithProgIterator(long cur_datam,long inc_datam):
+    cur_data{cur_datam},step{inc_datam}{}
+
 public:
     bool operator==(const ArithProgIterator& other) const;
     bool operator!=(const ArithProgIterator& other) const;
@@ -36,9 +38,13 @@ public:
 
 class FiboProgIterator{
     long cur_data;
-    long prev;
+    long st1;
+    long st2;
     friend class FibonacciProgression;
-    FiboProgIterator(long cur_datam, long prevm):cur_data{cur_datam},prev{prevm}{}
+    FiboProgIterator(long cur,long st1, long st2):
+    cur_data{cur},st1{st1},st2{st2}{};
+    FiboProgIterator(long cur, long st1):
+        cur_data{cur},st1{st1}{};
 public:
     bool operator==(const FiboProgIterator& other) const;
     bool operator!=(const FiboProgIterator& other) const;
@@ -52,8 +58,8 @@ public:
 
 
 class Progression {
-    long first;
 public:
+    long first;
     Progression()= default;
     Progression(long firstm):first{firstm}{}
     long firstValue();
@@ -67,12 +73,20 @@ public:
 //PROG ARITMETICA
 
 class ArithProgression : public Progression {
-    long inc;
+    long step;
+    long stop;
 public:
     ArithProgression()=default;
-    ArithProgression(long incm): Progression{0},inc{incm}{}
+    ArithProgression(long stop): Progression{0},step{1},stop{stop}{}
+    ArithProgression(long start, long stop) : Progression{start},step{1},
+    stop{stop}{}
+    ArithProgression(long start, long stop, long step) : Progression{start},
+    step{step},stop{stop}{}
     long nextValue(){};
     using iterator=ArithProgIterator;
+    iterator begin() const{return iterator(first,stop);}
+
+    iterator end() const{return iterator(stop, step);}
 };
 
 bool ArithProgIterator::operator==(const ArithProgIterator &other) const {
@@ -88,11 +102,11 @@ long &ArithProgIterator::operator*() {
 }
 
 ArithProgIterator &ArithProgIterator::operator++() {
-    cur_data +=inc_data;
+    cur_data +=step;
     return *this;
 }
 
-ArithProgIterator &ArithProgIterator::operator++(int) {
+ArithProgIterator &ArithProgIterator::operator++(int){
     auto it=this;
     ++(*this);
     return *it;
@@ -102,12 +116,21 @@ ArithProgIterator &ArithProgIterator::operator++(int) {
 
 
 class GeomProgression : public Progression {
-    long base;
+    long step;
+    long start;
+    long stop;
 public:
     GeomProgression()= default;
-    GeomProgression(long basem):Progression{0},base{basem}{}
+    GeomProgression(long stop):Progression{0},stop{stop},step{1}{}
+    GeomProgression(long start, long stop):Progression{start},stop{stop},
+    step{step}{}
+    GeomProgression(long start, long stop, long step): Progression{start},
+    stop{stop},step{step}{}
+
     long nextValue(){};
     using iterator=GeomProgIterator;
+    iterator  begin() const{return iterator(stop,step);}
+    iterator end() const{return iterator(stop, step);}
 };
 
 bool GeomProgIterator::operator==(const GeomProgIterator &other) const {
@@ -140,14 +163,17 @@ GeomProgIterator &GeomProgIterator::operator++(int) {
 
 
 class FibonacciProgression : public Progression {
-    long prev;
+    long start;
+    long stop;
+    long step1;
+    long step2;
 public:
     FibonacciProgression()= default;
-    FibonacciProgression(long prevm): Progression{0},prev{prevm}{}
-    long nextValue(){};
+    FibonacciProgression(long stop): Progression{0},stop{stop} {}
+    long nextValue() override {};
     using iterator=FiboProgIterator;
-    FiboProgIterator(int curr, int step1, int step2): curr{curr}, step1{step1}, step2{step2} {}
-    FiboProgIterator(int curr, int step1): curr{curr}, step1{step1} {}
+    iterator begin() const{return iterator(start,step1,step2);}
+    iterator end() const{return iterator(stop,step1);}
 };
 
 bool FiboProgIterator::operator==(const FiboProgIterator &other) const {
@@ -158,20 +184,14 @@ bool FiboProgIterator::operator!=(const FiboProgIterator &other) const {
     return cur_data < other.cur_data;
 }
 
-long &FiboProgIterator::operator*() {
-    return cur_data;
-}
-
 FiboProgIterator &FiboProgIterator::operator++() {
-    cur_data+=prev;
+    cur_data=st1+st2;
+    st1=st2;
+    st2=cur_data;
     return *this;
 }
 
-FiboProgIterator &FiboProgIterator::operator++(int) {
-    auto it=this;
-    ++(*this);
-    return *it;
-}
+
 
 
 #endif //PROGRESSION_PROGRESSION_H

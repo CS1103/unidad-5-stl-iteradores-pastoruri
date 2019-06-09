@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Progression.dir/main.cpp.obj"
-  "CMakeFiles/Progression.dir/Progression.cpp.obj"
+  "CMakeFiles/Progression.dir/main.cpp.o"
+  "CMakeFiles/Progression.dir/Progression.cpp.o"
   "Progression.pdb"
-  "Progression.exe"
-  "Progression.exe.manifest"
-  "Progression.lib"
+  "Progression"
 )
 
 # Per-language clean rules from dependency scanning.

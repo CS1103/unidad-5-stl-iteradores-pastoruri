@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/rodrigo.cespedes/Progression/Progression.cpp" "C:/Users/rodrigo.cespedes/Progression/cmake-build-debug/CMakeFiles/Progression.dir/Progression.cpp.obj"
-  "C:/Users/rodrigo.cespedes/Progression/main.cpp" "C:/Users/rodrigo.cespedes/Progression/cmake-build-debug/CMakeFiles/Progression.dir/main.cpp.obj"
+  "/home/rodrigo/Desktop/unidad-5-stl-iteradores-pastoruri-master/Progression/Progression.cpp" "/home/rodrigo/Desktop/unidad-5-stl-iteradores-pastoruri-master/Progression/cmake-build-debug/CMakeFiles/Progression.dir/Progression.cpp.o"
+  "/home/rodrigo/Desktop/unidad-5-stl-iteradores-pastoruri-master/Progression/main.cpp" "/home/rodrigo/Desktop/unidad-5-stl-iteradores-pastoruri-master/Progression/cmake-build-debug/CMakeFiles/Progression.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "MSVC")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
